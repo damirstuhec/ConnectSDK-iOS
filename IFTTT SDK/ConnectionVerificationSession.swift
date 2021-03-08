@@ -74,7 +74,7 @@ final class ConnectionVerificationSession {
     ///     - url: The url to kick off the connection verification with.
     @available(iOS, obsoleted: 13, message: "API is obsoleted in iOS 13. Please use `start(with url: URL, in presentationContext: UIWindow)` instead.")
     func start(from viewController: UIViewController, with url: URL) {
-        if #available(iOS 11, *) {
+        if #available(iOS 13, *) {
             let authenticationSession = AuthenticationSession(url: url, callbackURLScheme: nil) { [weak self] (result) in
                 switch result {
                 case .success(let url):

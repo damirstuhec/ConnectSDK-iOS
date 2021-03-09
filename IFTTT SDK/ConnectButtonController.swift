@@ -730,21 +730,21 @@ public class ConnectButtonController {
     }
     
     private func startWebConnectionVerification(with url: URL) {
-        if #available(iOS 13.0, *) {
+//         if #available(iOS 13.0, *) {
             guard let presentationContext = delegate?.webAuthenticationPresentationAnchor() else {
                 assertionFailure("It is expected for the web flow in iOS versions >= 13.0 to implement the `webAuthenticationPresentationAnchor()` delegate method of `ConnectButtonControllerDelegate`.")
                 return
             }
             
             connectionVerificationSession.start(with: url, in: presentationContext)
-        } else {
-            guard let viewController = delegate?.presentingViewController(for: self) else {
-                assertionFailure("It is expected for the web flow in iOS versions < 12 to implement the `presentingViewController(for connectButtonController: ConnectButtonController)` delegate method of `ConnectButtonControllerDelegate`.")
-                return
-            }
+//         } else {
+//             guard let viewController = delegate?.presentingViewController(for: self) else {
+//                 assertionFailure("It is expected for the web flow in iOS versions < 12 to implement the `presentingViewController(for connectButtonController: ConnectButtonController)` delegate method of `ConnectButtonControllerDelegate`.")
+//                 return
+//             }
            
-            connectionVerificationSession.start(from: viewController, with: url)
-        }
+//             connectionVerificationSession.start(from: viewController, with: url)
+//         }
     }
 
     private func transitionToActivationComplete(service: Connection.Service) {

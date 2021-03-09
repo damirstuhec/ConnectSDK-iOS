@@ -74,18 +74,18 @@ final class ConnectionVerificationSession {
     ///     - url: The url to kick off the connection verification with.
     @available(iOS, obsoleted: 13, message: "API is obsoleted in iOS 13. Please use `start(with url: URL, in presentationContext: UIWindow)` instead.")
     func start(from viewController: UIViewController, with url: URL) {
-        if #available(iOS 13, *) {
-            let authenticationSession = AuthenticationSession(url: url, callbackURLScheme: nil) { [weak self] (result) in
-                switch result {
-                case .success(let url):
-                    self?.redirectHandler.handleRedirect(url: url)
-                case .failure(let error):
-                    self?.handleAuthenticationError(error)
-                }
-            }
-            authenticationSession.start()
-            authProvider = .authSession(authenticationSession)
-        } else {
+//         if #available(iOS 13, *) {
+//             let authenticationSession = AuthenticationSession(url: url, callbackURLScheme: nil) { [weak self] (result) in
+//                 switch result {
+//                 case .success(let url):
+//                     self?.redirectHandler.handleRedirect(url: url)
+//                 case .failure(let error):
+//                     self?.handleAuthenticationError(error)
+//                 }
+//             }
+//             authenticationSession.start()
+//             authProvider = .authSession(authenticationSession)
+//         } else {
             let safari = SFSafariViewController(url: url)
             safari.delegate = cancellationObserver
             if #available(iOS 11.0, *) {
@@ -93,7 +93,7 @@ final class ConnectionVerificationSession {
             }
             authProvider = .safari(safari)
             viewController.present(safari, animated: true, completion: nil)
-        }
+//         }
     }
     
     /// Handles authentication success.
